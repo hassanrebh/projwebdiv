@@ -1,11 +1,11 @@
-import {addDoc,collection,auth,db,query,where,getDocs} from "./firebase.js"
-console.log(auth)
+import {addDoc,collection,doc,auth,db,query,where,getDocs,updateDoc} from "./firebase.js"
+
 async function getItems(){
     if(!auth.currentUser){
         return setTimeout(getItems,1000)
     }
     const items = await getDocs(query(collection(db,"tasks"),where("user","==",auth.currentUser.uid)))
-    renderItems(items.docs.map(doc => doc.data()))
+    renderItems(items.docs.map(doc => ({id:doc.id,...doc.data()})))
 }
 
 function renderItems(items){
@@ -24,6 +24,14 @@ function renderItem(item){
 
     const todoItemComplete = document.createElement("input")
     todoItemComplete.type = "checkbox"
+    todoItemComplete.addEventListener("click",(event)=>{
+        // event.target.checked
+        console.log(item)
+        updateDoc(doc(db,"tasks",item.id),{
+            isComplete:event.target.checked
+        })
+    })
+    todoItemComplete.checked = item.isComplete
     todoItem.appendChild(todoItemComplete)
 
     todoItems.appendChild(todoItem)
@@ -43,7 +51,7 @@ async function addItem(event){
     }
     const newTask = await addDoc(collection(db,"tasks"),newTaskData)
     console.log("Document written with ID: ", newTask.id);
-    renderItem(newTaskData)
+    renderItem({id:newTask.id,...newTaskData})
 }
 
 function markCompleted(id){
