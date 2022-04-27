@@ -1,7 +1,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
+import { getAuth,signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 import { addDoc, collection, getFirestore ,query,where,getDocs, doc,updateDoc} from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
 
 
@@ -25,4 +25,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
-export { auth, signInWithEmailAndPassword,doc,updateDoc, createUserWithEmailAndPassword, addDoc, collection ,db,query,where,getDocs}
+export { auth, signOut,signInWithEmailAndPassword,doc,updateDoc, createUserWithEmailAndPassword, addDoc, collection ,db,query,where,getDocs}

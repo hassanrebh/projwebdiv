@@ -1,4 +1,4 @@
-import {addDoc,collection,doc,auth,db,query,where,getDocs,updateDoc} from "./firebase.js"
+import {addDoc,collection,doc,auth,db,query,where,getDocs,updateDoc,signOut} from "./firebase.js"
 auth.onAuthStateChanged((user)=>{
     if(!user){
         window.location.href = "/signIn.html"
@@ -75,3 +75,7 @@ function markCompleted(id){
 
 getItems();
 document.getElementById("newTaskForm").addEventListener("submit",addItem)
+document.getElementById("signOut").addEventListener("click",async()=>{
+    await signOut(auth)
+    window.location.href = "/signIn.html"
+})
