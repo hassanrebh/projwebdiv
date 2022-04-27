@@ -26,6 +26,6 @@ authForm.addEventListener("submit",async(event)=>{
     userCredentials = await createUserWithEmailAndPassword(auth,email,password)
   }
   alert(userCredentials.user.email+" has logged In ")
-  window.location.href = "/index.html"
+  window.location.href = "index.html"
 
 })
