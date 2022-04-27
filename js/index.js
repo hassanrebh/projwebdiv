@@ -1,7 +1,7 @@
 import {addDoc,collection,doc,auth,db,query,where,getDocs,updateDoc,signOut} from "./firebase.js"
 auth.onAuthStateChanged((user)=>{
     if(!user){
-        window.location.href = "/signIn.html"
+        window.location.href = "signIn.html"
     }
 })
 async function getItems(){
@@ -77,5 +77,5 @@ getItems();
 document.getElementById("newTaskForm").addEventListener("submit",addItem)
 document.getElementById("signOut").addEventListener("click",async()=>{
     await signOut(auth)
-    window.location.href = "/signIn.html"
+    window.location.href = "signIn.html"
 })
