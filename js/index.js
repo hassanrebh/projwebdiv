@@ -1,5 +1,9 @@
 import {addDoc,collection,doc,auth,db,query,where,getDocs,updateDoc} from "./firebase.js"
-
+auth.onAuthStateChanged((user)=>{
+    if(!user){
+        window.location.href = "/signIn.html"
+    }
+})
 async function getItems(){
     if(!auth.currentUser){
         return setTimeout(getItems,1000)
