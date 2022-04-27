@@ -34,6 +34,17 @@ function renderItem(item){
     todoItemComplete.checked = item.isComplete
     todoItem.appendChild(todoItemComplete)
 
+    const todoItemSpeak = document.createElement("button")
+    todoItemSpeak.textContent= "listen"
+    todoItemSpeak.addEventListener("click",(event)=>{
+        let utter = new SpeechSynthesisUtterance();
+        utter.lang = 'en-US';
+        utter.text = item.task;
+        utter.volume = 0.5;
+        window.speechSynthesis.speak(utter);
+    })
+    todoItem.appendChild(todoItemSpeak)
+
     todoItems.appendChild(todoItem)
 }
 

@@ -25,3 +25,19 @@ recognition.onspeechend = function () {
 recognition.onerror = function (event) {
   console.error(event);
 };
+
+// new SpeechSynthesisUtterance object
+let utter = new SpeechSynthesisUtterance();
+utter.lang = 'en-US';
+utter.text = 'Hello World';
+utter.volume = 0.5;
+
+// speak
+utter.onclick = function (event){
+   window.speechSynthesis.speak(utter);
+  }
+
+// event after text has been spoken
+utter.onend = function() {
+	alert('Finshed');
+}
